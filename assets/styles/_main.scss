@@ -1,0 +1,142 @@
+html {
+	height: 100%;
+}
+
+body {
+	font-family: $font-family--primary;
+	font-size: 18px;
+	background-color: $color--primary;
+	background: linear-gradient(135deg, rgba(255,225,2,1) 0%,rgba(255,182,0,1) 100%);
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+	color: $white;
+	height: 100%;
+	line-height: 1.8;
+}
+
+.site-wrapper {
+	width: 100%;
+	max-width: $site--max-width;
+	margin: 0 auto;
+}
+
+::selection {
+	background: darken($color--primary, 2%);
+	color: $white;
+}
+
+::-moz-selection {
+	background: darken($color--primary, 2%);
+	color: $white;
+}
+
+a {
+	text-decoration: none;
+	color: $color--secondary;
+	position: relative;
+
+	&::after {
+		height: 100%;
+		width: 0;
+		border-bottom: 2px solid;
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 2px;
+		transition: .4s ease;
+		opacity: .8;
+		line-height: 1.8;
+	}
+
+	&:hover, &:focus {
+		opacity: 1;
+
+		&::after {
+			width: 100%;
+		}
+	}
+}
+
+h1, h2, h3, h4 {
+	font-family: $font-family--primary;
+}
+
+.container {
+	max-width: 900px;
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+	display: table;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#header {
+	padding: 100px 0 25px;
+	background-color: $white;
+	min-height: 200px;
+	@include angled-edge('outside bottom','lower right', $white, strip-unit($site--max-width), 150);
+}
+
+#logo {
+	max-width: 200px;
+	height: auto;
+	display: inline-block;
+	vertical-align: middle;
+	opacity: 0;
+	animation: fadein 1s .5s forwards;
+}
+
+h1 {
+	display: inline-block;
+	vertical-align: middle;
+	color: $color--primary;
+	font-size: 60px;
+	opacity: 0;
+	animation: fadein 1s 1s forwards;
+	position: relative;
+	margin: 0;
+
+	@media (max-width: 767px) {
+		font-size: 30px;
+	}
+}
+
+
+#content {
+	padding: 150px 0 100px;
+	color: $white;
+
+	h2 {
+		margin: 0 0 10px;
+	}
+
+	p {
+		max-width: 600px;
+		margin: 0 auto 15px;
+	}
+
+	hr {
+		border: 0;
+		height: 1px;
+		margin: 25px auto;
+		box-shadow: 0 1px rgba($color--secondary,.1);
+		max-width: 100px;
+	}
+
+	.container > * {
+
+		@for $i from 1 through 3 {
+
+			&:nth-child(#{$i}) {
+				opacity: 0;
+				$delay: $i / 4 + 1.25;
+				animation: fadein 1s #{$delay}s forwards;
+			}
+		}
+	}
+}
+
+.colophon {
+	margin-top: 100px;
+}
